@@ -34,7 +34,7 @@ int print_string(va_list types, char buffer[],
 {
 	int length = 0, i;
 
-	char *str = va_arg(types, char);
+	char *str = va_arg(types, char*);
 
 	UNUSED(buffer);
 	UNUSED(flags);
@@ -57,17 +57,17 @@ int print_string(va_list types, char buffer[],
 	{
 		if (flags & F_MINUS)
 		{
-			write(1, &str[O], length);
+			write(1, &str[0], length);
 
-			for (i = width - length; i > O; i--)
-				write(1' " " ' 1);
+			for (i = width - length; i > 0; i--)
+				write(1, " ", 1);
 			return (width);
 		}
 		else
 		{
-			for (i = width - length; i > O; i--)
-				write(1' " " ' 1);
-			write(1, &str[O], length);
+			for (i = width - length; i > 0; i--)
+				write(1, " ", 1);
+			write(1, &str[0], length);
 			return (width);
 		}
 	}
@@ -111,7 +111,7 @@ int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int i = BUFF_SIZE - 2;
-	int is_negative = O;
+	int is_negative = 0;
 	long int n = va_arg(types, long int);
 	unsigned long int num;
 

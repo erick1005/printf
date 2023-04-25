@@ -9,8 +9,8 @@
 */
 int get_size(const char *format, int *i)
 {
-	int curr-i = *i + 1;
-	int size = O;
+	int curr_i = *i + 1;
+	int size = 0;
 
 	if (format[curr_i] == 'I')
 		size = S_LONG;
@@ -21,8 +21,7 @@ int get_size(const char *format, int *i)
 		*i = curr_i - 1;
 
 	else
-		*i = curr_i,·
-
+		*i = curr_i;
 
 	return (size);
 }
